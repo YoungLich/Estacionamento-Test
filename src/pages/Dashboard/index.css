@@ -1,0 +1,51 @@
+/* .container {
+  top: 10px;
+  display: grid;
+  left: 10%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  position: fixed;
+  width: 80%;
+ 
+ 
+} */
+
+ .cards {
+  background-color: rgb(245, 244, 198);
+  border-radius: 30px;
+  margin-top: 10px 10px;
+  padding: 50px;
+  text-align: left;
+  box-shadow: 5px 5px 5px rgb(38, 48, 197);
+} 
+
+
+.title {
+  display: flex;
+  top: 45px;
+  color: rgb(7, 6, 6);
+  position: fixed;
+  font-size: 20px;
+  left: 12%;
+  
+}
+h1{
+
+  color: red;
+  font-size: 30px;
+}
+
+ button{
+  margin: 45px;
+  align-items: center;
+  background-color:rgb(245, 244, 198);
+  color: rgb(255, 0, 0);
+  position: fixed;
+  font-size: 20px;
+  left: 15%;
+  font-size: 12px;
+  padding: 9px 40px;
+  opacity: 0.5;
+  cursor: pointer;
+ }
