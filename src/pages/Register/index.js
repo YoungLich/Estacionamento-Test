@@ -19,12 +19,13 @@ export const Register = () => {
     setSuccess('');
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password, nome);
+      await createUserWithEmailAndPassword(auth, email, password);
 
 
       await addDoc(collection(db, 'Usuarios'), {
         nome: nome,
         email: email,
+        password: password,
         telefone: telefone,
         placa: placa,
         cpf: cpf,
