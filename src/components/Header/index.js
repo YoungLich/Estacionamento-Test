@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
-import { Sidebar } from '../Sidebar';
-import { Container } from './styled';
+import React, { useState } from 'react'
+import { FaBars } from 'react-icons/fa'
+import { Sidebar } from '../Sidebar'
+import { Container } from './styled'
 
 export const Header = () => {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(false)
 
-
-  const handleMouseEnter = () => {
-    setSidebar(true);
-  };
-
-
-  const handleMouseLeave = () => {
-    setSidebar(false);
-  };
+  const showSiderbar = () => setSidebar(!sidebar)
 
   return (
-    <Container onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <FaBars />
+    <Container>
+      <FaBars onClick={showSiderbar} />
       {sidebar && <Sidebar active={setSidebar} />}
     </Container>
-  );
-};
+  )
+}
+

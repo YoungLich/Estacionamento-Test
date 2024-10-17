@@ -1,4 +1,4 @@
-import 'react-toastify/dist/ReactToastify.css';
+
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
@@ -11,7 +11,7 @@ export default createGlobalStyle`
 
 body{
     background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background: rgb(17, 60, 109);
     display: flex;
     align-items: center;
     justify-content: center;

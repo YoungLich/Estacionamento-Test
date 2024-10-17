@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+ 
+  
   
 
   > svg {
@@ -22,7 +24,7 @@ export const Container = styled.div`
 export const Menu = styled.div`
   position: fixed;  
   top: 0; 
- 
+  text-decoration: none;
   width: 200px;
   height: 100%; 
   background-color: #2D3748;
@@ -37,6 +39,7 @@ export const Menu = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
+    
 
     li {
       margin: 10px 0;
@@ -44,7 +47,7 @@ export const Menu = styled.div`
       cursor: pointer;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }

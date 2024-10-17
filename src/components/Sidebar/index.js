@@ -6,13 +6,16 @@ import {
   FaPowerOff,
   FaRegSun,
   FaTimes,
-  FaUserAlt
+  FaUserAlt,
+  FaUserCircle
 } from 'react-icons/fa';
-import { Container, Content } from './styled';
-
+import { Link } from 'react-router-dom';
+import { auth } from '../../service/firebaseConfig';
 import { SidebarItem } from '../SidebarItem';
+import { Container, Content, ProfilePicture } from './styled';
 
 export const Sidebar = ({ active }) => {
+  const user = auth.currentUser;
 
   const closeSidebar = () => {
     active(false);
@@ -22,9 +25,26 @@ export const Sidebar = ({ active }) => {
     <Container sidebar={active}>
       <FaTimes onClick={closeSidebar} />
       <Content>
-        <SidebarItem Icon={FaHome} Text="Dashboard" />
+        {user && (
+          <ProfilePicture>
+            <FaUserCircle size={90} style={{ color: '#fff', margin: '2 3 3 2' }} />
+            <span>{user.nome}</span>
+          </ProfilePicture>
+        )}
+
+
+
+        <Link to="/dashboard" style={{ textDecoration: 'none' }} >
+          <SidebarItem Icon={FaHome} Text="Dashboard" />
+        </Link>
         <SidebarItem Icon={FaChartBar} Text="Relatórios" />
-        <SidebarItem Icon={FaUserAlt} Text="Perfil" />
+
+        <Link to="/perfil" style={{ textDecoration: 'none' }} >
+          <SidebarItem Icon={FaUserAlt} Text="Perfil" />
+        </Link>
+
+
+
         <SidebarItem Icon={FaCar} Text="Vagas" />
         <SidebarItem Icon={FaRegSun} Text="Configuração" />
         <SidebarItem Icon={FaPowerOff} Text="Sair" />
