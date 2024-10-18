@@ -42,15 +42,37 @@ export const Content = styled.div`
 `;
 
 export const ProfilePicture = styled.div`
+ img {
+   margin-top: 1px;
+   margin-left: 1px;
+  
+  
+   width: 90px;
+   height: 90px;
+   border-radius: 50%;
+  
+ }
 
-  border-radius: 50%;
+  border-radius: 60%;
   margin: -40px 100px;
-  width: 100px;
-  height: 100px;
+  width: 98px;
+  height: 98px;
   object-fit: cover;
   margin-bottom: 10px;
-  border: 3px solid #fff8f8;
+  border: 3px solid black;
   transition: width 0.3s ease, height 0.3s ease;
     
   
+`;
+
+export const Title = styled.h1`
+  padding: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: rgb(235, 87, 29);
+  margin-top: -10px;
+  margin-left: 30px;
+  font-size: 20px;
+
 `;

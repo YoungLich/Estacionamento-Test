@@ -1,12 +1,12 @@
 import { getAuth } from "firebase/auth";
-import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { FaEdit } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { db, storage } from "../../service/firebaseConfig";
-import "./index.css";
+import { db } from "../../service/firebaseConfig";
+
+import { Container, ProfilePicture, Title } from "./styled";
 
 const Perfil = () => {
   const [user, setUser] = useState(null);
@@ -39,29 +39,6 @@ const Perfil = () => {
     fetchUserData();
   }, [auth]);
 
-  const handleImageUpload = async (file) => {
-    if (file && user) {
-      const storageRef = ref(storage, `profilePictures/${user.id}/${file.name}`);
-      await uploadBytes(storageRef, file);
-      const photoURL = await getDownloadURL(storageRef);
-      const userDocRef = doc(db, 'Usuarios', user.id);
-      await updateDoc(userDocRef, { photoURL });
-      setUser((prev) => ({ ...prev, photoURL }));
-    }
-  };
-
-  const handleEditClick = (e) => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = "image/*";
-    fileInput.onchange = (event) => {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        handleImageUpload(selectedFile);
-      }
-    };
-    fileInput.click();
-  };
 
   if (!user) {
     return <div>Nenhum usuário encontrado. Por favor, faça login.</div>;
@@ -70,26 +47,27 @@ const Perfil = () => {
   return (
     <>
       <Header />
-      <div >
-        <h1 className="subtitle">Meu Perfil</h1>
 
-        <div className="image-container">
-          {user.photoURL ? (
-            <img src={user.photoURL} alt="Foto de perfil" />
-          ) : (
-            <div />
-          )}
-          <FaEdit className="edit-icon" color="red" size={40} onClick={handleEditClick} />
-        </div>
+      <Title>Meu Perfil</Title>
 
-        <span><strong>Nome:</strong> {user.nome}
-          <Link to={`/perfil/editar/${user.id}`}>
-            <FaEdit color="red" size={20} />
-          </Link>
-        </span >
+      <ProfilePicture>
+        {user.photoURL ? (
+          <img src={user.photoURL} alt="Foto de perfil" className="profile-picture" />
+        ) : (
+          <FaUserCircle size={165} style={{ color: 'black', margin: '2 1 2 2' }} />
+        )}
+      </ProfilePicture>
 
-        <span> E-mail: {user.email}</span>
-      </div >
+      <Container>
+        <span><strong>Nome:</strong> {user.nome}</span><br />
+        <span><strong>E-mail:</strong> {user.email}</span><br />
+        <span><strong>C.P.F:</strong> {user.cpf}</span><br />
+        <span><strong>Telefone:</strong> {user.telefone}</span><br />
+        <span><strong>Placa:</strong> {user.placa}</span><br />
+      </Container>
+      <button type="submit"><Link to={`/editar/${user.id}`}>
+        Editar Pefil
+      </Link></button>
     </>
   );
 };

@@ -18,7 +18,7 @@ function Rotas() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/perfil" element={<Perfil />} />
       <Route path="/foto" element={<Foto />} />
-      <Route path="perfil/editar/:id" element={<Editar />} />
+      <Route path="/editar/:id" element={<Editar />} />
       <Route path="/register" element={<Register />} />
     </Routes>
 
