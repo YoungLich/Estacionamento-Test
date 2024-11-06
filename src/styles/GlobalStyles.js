@@ -17,6 +17,7 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
 }
   
 `;

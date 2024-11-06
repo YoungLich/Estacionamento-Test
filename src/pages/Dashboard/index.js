@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Chart } from 'react-google-charts';
 import { Header } from '../../components/Header';
+import Imagem from "../../img/reservedpar1.png";
 import './index.css';
-import { Cards, CardsContainer, Main, Title } from './styled';
+import { Cards, CardsContainer, Imge, Main, Title } from './styled';
 
 export const data = [
   ['Disponivel', 'Não Disponivel'],
@@ -80,6 +81,7 @@ export default function Dashboard() {
     <>
       <Header />
       <Main className="container">
+        <Imge src={Imagem} alt="" />
         <div className="charts-container">
           <Chart
             chartType='PieChart'
@@ -100,11 +102,41 @@ export default function Dashboard() {
         <CardsContainer>
           <Cards>
             <Title>Reserva Totais</Title>
-            <p>Hoje:</p>
-            <p>Semana:</p>
-            <p>Mês:</p>
-
+            <h1>
+              Hoje:
+              <p>150</p>
+            </h1>
+            <h1>
+              Semana:
+              <p>350</p>
+            </h1>
+            <h1>
+              Mês:
+              <p>550</p>
+            </h1>
           </Cards>
+          <Cards>
+            <Title>Taxa de ocupação</Title>
+            <h1>
+              40%
+              <p>Ocupado</p>
+            </h1>
+          </Cards>
+          <Cards>
+            <Title>Vaga Disponivél</Title>
+            <h1>
+              Vagas Disponiveis:
+              <p>150</p>
+            </h1>
+            <h1>
+              Vagas não Disponiveis:
+              <p>80</p>
+            </h1>
+          </Cards>
+
+
+
+
 
 
         </CardsContainer>

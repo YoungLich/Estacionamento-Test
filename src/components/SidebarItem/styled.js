@@ -37,7 +37,7 @@ export const Name = styled.span`
   display: inline-block;
   opacity: 1; 
   visibility: hidden; 
-  transition: opacity 0.3s ease, visibility 0.9s 0.5s;   
+  transition: opacity 0.3s ease, visibility 10s 10s;   
   ${Container}:hover & {
     opacity: 1;
     visibility: visible;
