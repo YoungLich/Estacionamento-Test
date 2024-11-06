@@ -1,18 +1,14 @@
+// SidebarItem.js
 import React from 'react';
-import { Container } from './styled';
+import { Container, IconWrapper, Name } from './styled';
 
 export const SidebarItem = ({ Icon, Text }) => {
   return (
-
-
-
-    <Container >
-
-      <Icon />
-      {Text}
+    <Container>
+      <IconWrapper>
+        <Icon />
+      </IconWrapper>
+      <Name>{Text}</Name>
     </Container>
-
-
   );
-}
-
+};

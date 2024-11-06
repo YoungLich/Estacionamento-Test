@@ -6,12 +6,15 @@ export const Container = styled.div`
   position: fixed;
   height: 100%;
   top: 0px;
-  border-radius: 10px;
-  border-right: 13px solid rgb(235, 87, 29);
-  width: 300px;
-  left: ${props => (props.sidebar ? '0' : '-100%')}; 
-  animation: showSidebar .4s;
-  
+  border-radius: 1px;
+  border-right: 10px solid rgb(235, 87, 29);
+  width: 60px; 
+  left: 0;
+  transition: width 0.3s ease, opacity 0.3s ease; /* Transição suave */
+
+  &:hover {
+    width: 300px; /* Expande a largura quando o mouse passar */
+  }
 
   > svg {
     position: fixed;
@@ -38,41 +41,6 @@ export const Container = styled.div`
 export const Content = styled.div`
   margin-top: 100px;
   text-decoration: none;
-
 `;
 
-export const ProfilePicture = styled.div`
- img {
-   margin-top: 1px;
-   margin-left: 1px;
-  
-  
-   width: 90px;
-   height: 90px;
-   border-radius: 50%;
-  
- }
 
-  border-radius: 60%;
-  margin: -40px 100px;
-  width: 98px;
-  height: 98px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  border: 3px solid black;
-  transition: width 0.3s ease, height 0.3s ease;
-    
-  
-`;
-
-export const Title = styled.h1`
-  padding: 0;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  color: rgb(235, 87, 29);
-  margin-top: -10px;
-  margin-left: 30px;
-  font-size: 20px;
-
-`;

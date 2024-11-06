@@ -12,12 +12,27 @@ export const Main = styled.div`
   z-index: 10; 
 `;
 
-export const Cards = styled.div` 
+export const CardsContainer = styled.div`
+  margin-bottom: -250%;
+  margin-left: -1630px;
+  display: flex;
+  gap: 20px; /* Space between the cards */
+  justify-content: center; /* Centering cards horizontally */
+`;
+
+export const Cards = styled.div`
   background-color: rgba(247, 188, 232, 0.322);
   border-radius: 30px;
   padding: 30px;
   text-align: center;
   box-shadow: 5px 5px 5px rgb(38, 48, 197);
+  width: 100%; /* Adjust the width to fit inside the flex container */
+  max-width: 300px; /* Optional: set a max width for each card */
+  p{
+    align-items:center;
+    text-align: left;
+    
+  }
 `;
 
 export const Title = styled.div`

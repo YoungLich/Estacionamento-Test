@@ -1,0 +1,15 @@
+.container {
+  margin-bottom: -10%;
+  margin-left: 22%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Para centralizar verticalmente na tela */
+}
+
+.charts-container {
+  display: flex;
+  gap: 20px;
+  /* Espaço entre os gráficos */
+}

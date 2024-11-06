@@ -28,7 +28,6 @@ export const Menu = styled.div`
   width: 200px;
   height: 100%; 
   background-color: #2D3748;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   border-radius: 0 5px 5px 0;  /* Bordas arredondadas apenas na direita */
   opacity: 0;
