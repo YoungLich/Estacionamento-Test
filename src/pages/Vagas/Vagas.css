@@ -10,7 +10,7 @@
   border-bottom: 4px solid #EB571D;
   margin-bottom: 20px;
   margin-top: 10px;
-  margin-left: 200px;
+  margin-left: 140px;
 
 }
 
@@ -85,6 +85,10 @@ ol {
   padding: 4px;
 }
 
+.seat label {
+  margin-top: 0px;
+}
+
 #seat2 label {
   display: block;
   position: relative;
@@ -94,7 +98,7 @@ ol {
   font-weight: bolder;
   line-height: 1.5rem;
   padding: 4px 0;
-  background: #5bfc60;
+  background: #e9ec1e;
   border-radius: 5px;
   color: #112C6D;
   height: 80%;
@@ -109,7 +113,7 @@ ol {
   font-weight: bolder;
   line-height: 1.5rem;
   padding: 4px 0;
-  background: #5bfc60;
+  background: #f02c2c;
   border-radius: 5px;
   color: #112C6D;
   height: 80%;

@@ -1,4 +1,4 @@
-.container-edit{
+.container-edit {
   width: 800px;
   text-align: center;
   padding: 20px;
@@ -9,13 +9,13 @@
   border-top: 4px solid #EB571D;
   border-bottom: 4px solid #EB571D;
   margin-bottom: 20px;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 25px;
+  margin-left: 120px;
   position: relative;
-  
+
 }
 
-.span1{
+.span1 {
   color: white;
   font-size: 20px;
   text-align: center;
@@ -26,47 +26,55 @@
   gap: 30px;
   display: flex;
   margin-bottom: 25px;
-  
+
 }
 
-.span2{
+.span2 {
   color: black;
   position: absolute;
   margin-top: -300px;
 }
 
-.p1{
+.p1 {
   justify-content: center;
   text-align: center;
   margin-left: 110px;
   margin-top: -300px;
 }
 
- .profile-picture1{  
+.profile-picture1 {
   display: inline-block;
   position: relative;
   margin-right: -360px;
- }
+}
 
- .image1{
-  width: 150px;
+.image1 {
+  width: 200px;
   border: 3px solid;
-  border-radius: 80px;
+  border-radius: 10px;
   display: block;
   margin-bottom: 0px;
- }
- .title2{
+  margin-top: 15px;
+  margin-left: 70px;
+}
+
+.tit {
+  margin-top: 20px;
+  margin-left: 70px;
+}
+
+.title2 {
   color: rgb(0, 0, 0);
   margin-top: -300px;
   position: absolute;
   margin-left: 650px;
   justify-content: right;
   text-align: right;
- }
+}
 
-.btn10{
+.btn10 {
   display: block;
-  margin-top: -100px;
+  margin-top: -150px;
   margin-left: 30px;
   text-align: left;
   padding: 6px 10px;
@@ -79,6 +87,7 @@
   transition: background-color 0.3s;
   text-decoration: none;
 }
-.btn0:hover {
+
+.btn10:hover {
   background-color: #C84918;
 }

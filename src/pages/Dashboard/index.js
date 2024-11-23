@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Chart } from 'react-google-charts';
 import { Header } from "../../components/Header/index";
-import Image from "../../img/Logo.png";
+import Image from "../../img/Reserverd.png";
 import './dashboard.css';
 
 export const data = [

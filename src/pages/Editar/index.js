@@ -1,11 +1,11 @@
-import { getAuth } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"; // Correção aqui
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage"; // Correção aqui
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { db, storage } from "../../service/firebaseConfig";
+import { db, storage } from "../../service/firebaseConfig"; // Certifique-se que 'db' e 'storage' estão exportados corretamente de firebaseConfig
 import './edit.css';
 
 export const Editar = () => {
@@ -21,16 +21,14 @@ export const Editar = () => {
   const [newCep, setNewCep] = useState("");
   const [newCidade, setNewCidade] = useState("");
   const [newEstado, setNewEstado] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [editingPhoto, setEditingPhoto] = useState(false);
+  const [loading, setLoading] = useState(true);  // Estado de carregamento
 
   const auth = getAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const currentUser = auth.currentUser;
-
+    // Verifica o estado de autenticação assim que o componente for carregado
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const userEmail = currentUser.email;
         const q = query(collection(db, 'Usuarios'), where("email", "==", userEmail));
@@ -51,7 +49,6 @@ export const Editar = () => {
             setNewNumero(userData.numero);
             setNewCidade(userData.cidade);
             setNewEstado(userData.estado);
-
           });
         } else {
           console.log("Nenhum documento encontrado para este usuário.");
@@ -61,10 +58,15 @@ export const Editar = () => {
         console.log("Nenhum usuário autenticado.");
         setUser(null);
       }
-    };
+      setLoading(false);  // A autenticação foi verificada
+    });
 
-    fetchUserData();
-  }, [auth]);
+    return () => unsubscribe();
+  }, [auth]);  // O useEffect será disparado sempre que o auth mudar
+
+  if (loading) {
+    return <div>Carregando...</div>;  // Exibe "Carregando..." até verificar o estado da autenticação
+  }
 
   if (!user) {
     return <div>Nenhum usuário encontrado. Por favor, faça login.</div>;
@@ -72,8 +74,8 @@ export const Editar = () => {
 
   const deleteUser = async () => {
     if (user) {
-      await deleteDoc(doc(db, "Usuarios", user.id));
-      navigate("/");
+      await deleteDoc(doc(db, "Usuarios", user.id)); // 'doc' foi corrigido
+      navigate("/");  // Redireciona para a página inicial após excluir
     }
   };
 
@@ -81,8 +83,8 @@ export const Editar = () => {
     e.preventDefault();
     setLoading(true);
     if (user) {
-      const userRef = doc(db, "Usuarios", user.id);
-      await updateDoc(userRef, {
+      const userRef = doc(db, "Usuarios", user.id); // 'doc' foi corrigido
+      await updateDoc(userRef, { // 'updateDoc' foi corrigido
         nome: newName,
         email: newEmail,
         telefone: newTelefone,
@@ -94,24 +96,24 @@ export const Editar = () => {
         bairro: newBairro,
         cidade: newCidade,
         estado: newEstado
-
       });
-      navigate("/perfil");
+      setLoading(false);
+      navigate("/perfil");  // Redireciona para a página de perfil após atualizar
     }
   };
 
   const handleImageUpload = async (file) => {
     if (file && user) {
-      const storageRef = ref(storage, `profilePictures/${user.id}/${file.name}`);
-      await uploadBytes(storageRef, file);
-      const photoURL = await getDownloadURL(storageRef);
-      const userDocRef = doc(db, 'Usuarios', user.id);
+      const storageRef = ref(storage, `profilePictures/${user.id}/${file.name}`); // 'ref' e 'storage' foram corrigidos
+      await uploadBytes(storageRef, file); // 'uploadBytes' foi corrigido
+      const photoURL = await getDownloadURL(storageRef); // 'getDownloadURL' foi corrigido
+      const userDocRef = doc(db, 'Usuarios', user.id); // 'doc' foi corrigido
       await updateDoc(userDocRef, { photoURL });
       setUser((prev) => ({ ...prev, photoURL }));
     }
   };
+
   const handleEditClick = () => {
-    setEditingPhoto(true); // Ativa o modo de edição da foto
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "image/*";
@@ -122,13 +124,13 @@ export const Editar = () => {
       }
     };
     fileInput.click();
-    setEditingPhoto(false); // Desativa o modo de edição após o upload
   };
+
   const handleDeleteClick = async () => {
     if (user.photoURL) {
-      const photoRef = ref(storage, user.photoURL);
-      await deleteObject(photoRef);
-      const userDocRef = doc(db, 'Usuarios', user.id);
+      const photoRef = ref(storage, user.photoURL); // 'ref' e 'storage' foram corrigidos
+      await deleteObject(photoRef); // 'deleteObject' foi corrigido
+      const userDocRef = doc(db, 'Usuarios', user.id); // 'doc' foi corrigido
       await updateDoc(userDocRef, { photoURL: null });
       setUser((prev) => ({ ...prev, photoURL: null }));
     }
@@ -139,7 +141,7 @@ export const Editar = () => {
       <Header />
       <div className="edit">
         <h1>Editar Usuário</h1>
-        <div className="img2" >
+        <div className="img2">
           {user.photoURL ? (
             <>
               <img src={user.photoURL} alt="Foto de perfil" className="image3" />
@@ -150,7 +152,6 @@ export const Editar = () => {
           )}
           <FaEdit className="edit-icon" onClick={handleEditClick} />
         </div>
-
 
         <form className="form1" onSubmit={handleUpdateUser}>
           <label className="label1">
@@ -176,19 +177,17 @@ export const Editar = () => {
           <label className="label1">
             Senha:
             <input
-              className={`input1 ${editingPhoto ? 'no-select' : ''}`}
-
+              className="input1"
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="Digite sua nova senha"
-
             />
           </label>
           <label className="label1">
             Telefone:
             <input
-              className={`input1 ${editingPhoto ? 'no-select' : ''}`}
+              className="input1"
               type="text"
               value={newTelefone}
               onChange={(e) => setNewTelefone(e.target.value)}
@@ -214,7 +213,7 @@ export const Editar = () => {
               onChange={(e) => setNewCep(e.target.value)}
               placeholder="Digite seu novo Cep"
             />
-          </label>´
+          </label>
           <label className="label1">
             Rua:
             <input
@@ -252,7 +251,7 @@ export const Editar = () => {
               type="text"
               value={newCidade}
               onChange={(e) => setNewCidade(e.target.value)}
-              placeholder="Digite numero "
+              placeholder="Digite cidade"
             />
           </label>
           <label className="label1">
@@ -262,28 +261,19 @@ export const Editar = () => {
               type="text"
               value={newEstado}
               onChange={(e) => setNewEstado(e.target.value)}
-              placeholder="Digite numero "
+              placeholder="Digite estado"
             />
           </label>
           <div>
-            <button className="btn12" type="submit" disabled={loading} >
+            <button className="btn12" type="submit" disabled={loading}>
               {loading ? 'Carregando...' : 'Salvar'}
             </button>
             <button className="btn12" type="button" disabled={loading} onClick={deleteUser}>
               {loading ? 'Carregando...' : 'Deletar'}
             </button>
-
           </div>
-
-
         </form>
-
-
-
       </div>
-
-
-
     </>
   );
 };

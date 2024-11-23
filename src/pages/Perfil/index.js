@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
@@ -7,15 +7,13 @@ import { Header } from "../../components/Header";
 import { db } from "../../service/firebaseConfig";
 import "./perfil.css";
 
-
 const Perfil = () => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Adicionando um estado de carregamento
   const auth = getAuth();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const currentUser = auth.currentUser;
-
+    const fetchUserData = async (currentUser) => {
       if (currentUser) {
         const userEmail = currentUser.email;
         const q = query(collection(db, 'Usuarios'), where("email", "==", userEmail));
@@ -34,12 +32,23 @@ const Perfil = () => {
         console.log("Nenhum usuário autenticado.");
         setUser(null);
       }
+      setLoading(false); // Finaliza o carregamento
     };
 
-    fetchUserData();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      fetchUserData(currentUser);
+    });
+
+    // Cleanup: Remover o listener quando o componente for desmontado
+    return () => unsubscribe();
   }, [auth]);
 
+  // Exibe uma tela de carregamento ou mensagem enquanto os dados estão sendo carregados
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
+  // Se o usuário não for encontrado, exibe mensagem para login
   if (!user) {
     return <div>Nenhum usuário encontrado. Por favor, faça login.</div>;
   }
@@ -47,12 +56,7 @@ const Perfil = () => {
   return (
     <>
       <Header />
-
-
-
       <h2 className="title2">Foto Perfil</h2>
-
-
       <div className="container-edit">
         <h1>Meu Perfil</h1>
         <div className="profile-picture1">
@@ -61,9 +65,8 @@ const Perfil = () => {
           ) : (
             <FaUserCircle size={165} style={{ color: 'black', margin: '2 1 2 2' }} />
           )}
-          <h2>Foto do Perfil</h2>
+          <h2 class="tit">Foto do Perfil</h2>
         </div>
-
 
         <span className="span1"><strong className="span2">Nome:</strong> <p className="p1">{user.nome}</p></span><br />
         <span className="span1"><strong className="span2">E-mail:</strong> <p className="p1">{user.email}</p></span><br />
@@ -77,10 +80,10 @@ const Perfil = () => {
         <span className="span1"><strong className="span2">Estado:</strong> <p className="p1">{user.estado}</p></span><br />
         <button className="btn10" type="submit">
           <Link to={`/editar/${user.id}`} style={{ textDecoration: 'none', color: "white" }}>
-            Editar Pefil
-          </Link></button>
+            Editar Perfil
+          </Link>
+        </button>
       </div>
-
     </>
   );
 };

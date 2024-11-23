@@ -168,7 +168,7 @@ export const Register = () => {
           Estado:
           <input type="text" value={estado} onChange={(e) => setEstado(e.target.value)} required />
         </label>
-        <button type="submit">Criar</button>
+        <button class="btncreate" type="submit">Criar</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
