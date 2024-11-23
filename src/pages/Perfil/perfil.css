@@ -1,0 +1,84 @@
+.container-edit{
+  width: 800px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  background-color: #112C6D;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #EB571D;
+  border-bottom: 4px solid #EB571D;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  position: relative;
+  
+}
+
+.span1{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: left;
+  letter-spacing: 2px;
+  margin-left: 15px;
+  gap: 30px;
+  display: flex;
+  margin-bottom: 25px;
+  
+}
+
+.span2{
+  color: black;
+  position: absolute;
+  margin-top: -300px;
+}
+
+.p1{
+  justify-content: center;
+  text-align: center;
+  margin-left: 110px;
+  margin-top: -300px;
+}
+
+ .profile-picture1{  
+  display: inline-block;
+  position: relative;
+  margin-right: -360px;
+ }
+
+ .image1{
+  width: 150px;
+  border: 3px solid;
+  border-radius: 80px;
+  display: block;
+  margin-bottom: 0px;
+ }
+ .title2{
+  color: rgb(0, 0, 0);
+  margin-top: -300px;
+  position: absolute;
+  margin-left: 650px;
+  justify-content: right;
+  text-align: right;
+ }
+
+.btn10{
+  display: block;
+  margin-top: -100px;
+  margin-left: 30px;
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 17px;
+  border-radius: 4px;
+  background-color: #EB571D;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+.btn0:hover {
+  background-color: #C84918;
+}

@@ -1,0 +1,129 @@
+.relatorios {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  width: 1020px;
+  max-width: 1020px;
+  background-color: #112C6D;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #EB571D;
+  border-bottom: 4px solid #EB571D;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 230px;
+  position: relative;
+
+}
+
+.relatorios h1 {
+  font-size: 2.2rem;
+  color: #df7045;
+  margin-bottom: 25px;
+}
+
+.card-container3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card3 {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #EB571D;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-container3>.card3:nth-child(5) {
+  grid-column: span 2;
+}
+
+.card3 h2,
+.card3 h3 {
+  font-size: 1.8rem;
+  color: #FFFFFF;
+  margin-bottom: 15px;
+}
+
+
+.card3 .date-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: -10px;
+  flex-wrap: wrap;
+
+}
+
+.card3 .date-filter label {
+  font-size: 1rem;
+  color: #FFFFFF;
+  margin-right: 5px;
+  text-align: left;
+  min-width: 80px;
+
+}
+
+.card3 .date-filter input[type="date"] {
+  padding: 1px;
+  border: 1px solid #cce7ff;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  width: 160px;
+  margin-top: -70px;
+  margin-right: 62px;
+}
+
+.card3 .content-space {
+  flex-grow: 1;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 40px;
+  height: 180px;
+}
+
+/* .button-group4 {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: #EB571D;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+} */
+
+.btn4 {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 12px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: #EB571D;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn4:hover {
+  background-color: #C84918;
+}

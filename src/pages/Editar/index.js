@@ -4,18 +4,25 @@ import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../../components/Header";
 import { db, storage } from "../../service/firebaseConfig";
-import { Form, ProfilePicture, Title } from './styled';
+import './edit.css';
 
 export const Editar = () => {
   const [user, setUser] = useState(null);
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [newTelefone, setNewTelefone] = useState("");
-  const [newCpf, setNewCpf] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [newPlaca, setNewPlaca] = useState("");
+  const [newTelefone, setNewTelefone] = useState("");
+  const [newCnpj, setNewCnpj] = useState("");
+  const [newRua, setNewRua] = useState("");
+  const [newBairro, setNewBairro] = useState("");
+  const [newNumero, setNewNumero] = useState("");
+  const [newCep, setNewCep] = useState("");
+  const [newCidade, setNewCidade] = useState("");
+  const [newEstado, setNewEstado] = useState("");
   const [loading, setLoading] = useState(false);
+  const [editingPhoto, setEditingPhoto] = useState(false);
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -36,9 +43,14 @@ export const Editar = () => {
             setNewName(userData.nome);
             setNewEmail(userData.email);
             setNewTelefone(userData.telefone);
-            setNewCpf(userData.cpf);
-            setNewPlaca(userData.placa);
             setNewPassword(userData.password);
+            setNewCnpj(userData.cnpj);
+            setNewCep(userData.cep);
+            setNewRua(userData.rua);
+            setNewBairro(userData.bairro);
+            setNewNumero(userData.numero);
+            setNewCidade(userData.cidade);
+            setNewEstado(userData.estado);
 
           });
         } else {
@@ -74,9 +86,15 @@ export const Editar = () => {
         nome: newName,
         email: newEmail,
         telefone: newTelefone,
-        cpf: newCpf,
-        placa: newPlaca,
-        password: newPassword
+        cnpj: newCnpj,
+        password: newPassword,
+        cep: newCep,
+        rua: newRua,
+        numero: newNumero,
+        bairro: newBairro,
+        cidade: newCidade,
+        estado: newEstado
+
       });
       navigate("/perfil");
     }
@@ -92,8 +110,8 @@ export const Editar = () => {
       setUser((prev) => ({ ...prev, photoURL }));
     }
   };
-
   const handleEditClick = () => {
+    setEditingPhoto(true); // Ativa o modo de edição da foto
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "image/*";
@@ -104,8 +122,8 @@ export const Editar = () => {
       }
     };
     fileInput.click();
+    setEditingPhoto(false); // Desativa o modo de edição após o upload
   };
-
   const handleDeleteClick = async () => {
     if (user.photoURL) {
       const photoRef = ref(storage, user.photoURL);
@@ -118,82 +136,152 @@ export const Editar = () => {
 
   return (
     <>
+      <Header />
+      <div className="edit">
+        <h1>Editar Usuário</h1>
+        <div className="img2" >
+          {user.photoURL ? (
+            <>
+              <img src={user.photoURL} alt="Foto de perfil" className="image3" />
+              <FaTrash className="delete-icon" onClick={handleDeleteClick} />
+            </>
+          ) : (
+            <FaUserCircle size={165} style={{ color: 'black', margin: '2 10 2 2' }} />
+          )}
+          <FaEdit className="edit-icon" onClick={handleEditClick} />
+        </div>
 
-      <Title>Editar Usuário</Title>
-      <ProfilePicture>
-        {user.photoURL ? (
-          <>
-            <img src={user.photoURL} alt="Foto de perfil" className="profile-picture" />
-            <FaTrash className="delete-icon" color="red" size={40} onClick={handleDeleteClick} />
-          </>
-        ) : (
-          <FaUserCircle size={165} style={{ color: 'black', margin: '2 1 2 2' }} />
-        )}
-        <FaEdit className="edit-icon" color="red" size={40} onClick={handleEditClick} />
-      </ProfilePicture>
 
-      <Form onSubmit={handleUpdateUser}>
-        <label>
-          Nome:
-          <input
-            type="text"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            placeholder="Digite seu novo nome"
-          />
-        </label>
-        <label>
-          E-mail:
-          <input
-            type="text"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            placeholder="Digite seu novo e-mail"
-          />
-        </label>
-        <label>
-          Senha:
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder="Digite sua nova placa"
-          />
-        </label>
-        <label>
-          Telefone:
-          <input
-            type="text"
-            value={newTelefone}
-            onChange={(e) => setNewTelefone(e.target.value)}
-            placeholder="Digite seu novo telefone"
-          />
-        </label>
-        <label>
-          C.P.F:
-          <input
-            type="text"
-            value={newCpf}
-            onChange={(e) => setNewCpf(e.target.value)}
-            placeholder="Digite seu novo CPF"
-          />
-        </label>
-        <label>
-          Placa:
-          <input
-            type="text"
-            value={newPlaca}
-            onChange={(e) => setNewPlaca(e.target.value)}
-            placeholder="Digite sua nova placa"
-          />
-        </label>
-        <button type="submit" disabled={loading} className='clear'>
-          {loading ? 'Carregando...' : 'Salvar'}
-        </button>
-        <button type="button" disabled={loading} onClick={deleteUser}>
-          {loading ? 'Carregando...' : 'Deletar'}
-        </button>
-      </Form>
+        <form className="form1" onSubmit={handleUpdateUser}>
+          <label className="label1">
+            Nome:
+            <input
+              className="input1"
+              type="text"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              placeholder="Digite seu novo nome"
+            />
+          </label>
+          <label className="label1">
+            E-mail:
+            <input
+              className="input1"
+              type="text"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              placeholder="Digite seu novo e-mail"
+            />
+          </label>
+          <label className="label1">
+            Senha:
+            <input
+              className={`input1 ${editingPhoto ? 'no-select' : ''}`}
+
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Digite sua nova senha"
+
+            />
+          </label>
+          <label className="label1">
+            Telefone:
+            <input
+              className={`input1 ${editingPhoto ? 'no-select' : ''}`}
+              type="text"
+              value={newTelefone}
+              onChange={(e) => setNewTelefone(e.target.value)}
+              placeholder="Digite seu novo telefone"
+            />
+          </label>
+          <label className="label1">
+            CNPJ:
+            <input
+              className="input1"
+              type="text"
+              value={newCnpj}
+              onChange={(e) => setNewCnpj(e.target.value)}
+              placeholder="Digite seu novo CNPJ"
+            />
+          </label>
+          <label className="label1">
+            CEP:
+            <input
+              className="input1"
+              type="number"
+              value={newCep}
+              onChange={(e) => setNewCep(e.target.value)}
+              placeholder="Digite seu novo Cep"
+            />
+          </label>´
+          <label className="label1">
+            Rua:
+            <input
+              className="input1"
+              type="text"
+              value={newRua}
+              onChange={(e) => setNewRua(e.target.value)}
+              placeholder="Digite nome da rua"
+            />
+          </label>
+          <label className="label1">
+            Bairro:
+            <input
+              className="input1"
+              type="text"
+              value={newBairro}
+              onChange={(e) => setNewBairro(e.target.value)}
+              placeholder="Digite nome do Bairro"
+            />
+          </label>
+          <label className="label1">
+            Numero:
+            <input
+              className="input1"
+              type="number"
+              value={newNumero}
+              onChange={(e) => setNewNumero(e.target.value)}
+              placeholder="Digite numero "
+            />
+          </label>
+          <label className="label1">
+            Cidade:
+            <input
+              className="input1"
+              type="text"
+              value={newCidade}
+              onChange={(e) => setNewCidade(e.target.value)}
+              placeholder="Digite numero "
+            />
+          </label>
+          <label className="label1">
+            Estado:
+            <input
+              className="input1"
+              type="text"
+              value={newEstado}
+              onChange={(e) => setNewEstado(e.target.value)}
+              placeholder="Digite numero "
+            />
+          </label>
+          <div>
+            <button className="btn12" type="submit" disabled={loading} >
+              {loading ? 'Carregando...' : 'Salvar'}
+            </button>
+            <button className="btn12" type="button" disabled={loading} onClick={deleteUser}>
+              {loading ? 'Carregando...' : 'Deletar'}
+            </button>
+
+          </div>
+
+
+        </form>
+
+
+
+      </div>
+
 
 
     </>

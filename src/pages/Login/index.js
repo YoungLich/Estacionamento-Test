@@ -1,11 +1,14 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import image from "../../img/reservedpar4.png";
+import Image from "../../img/Reserverd.png";
+import Telegrma from "../../img/Telegram.png";
+import Wpp from "../../img/Wpp.png";
 import { auth, db } from '../../service/firebaseConfig';
+import "./login.css";
 
-import { Container, Form, Imge, ToggleContainer, ToggleRight, Togglepanel } from "./styled";
+
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -22,11 +25,8 @@ export const Login = () => {
     setSuccess('');
 
     try {
-
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-
 
       const userDocRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userDocRef);
@@ -35,54 +35,67 @@ export const Login = () => {
         const userData = userDoc.data();
         console.log('Dados do usuário:', userData);
         setSuccess(`Login bem-sucedido! Dados do usuário: ${JSON.stringify(userData)}`);
-
+        navigate('/dashboard');
       } else {
-        setError('.');
+        // Cria um novo documento para o usuário no Firestore caso não exista
+        await setDoc(userDocRef, {
+          email: user.email,
+          // Adicione aqui outros dados padrão para o novo usuário
+        });
+        setSuccess('Usuário criado no Firestore com sucesso!');
+        navigate('/dashboard');
       }
     } catch (err) {
       console.error('Erro durante o login:', err);
-      setError('Falha ao fazer login. Verifique suas credenciais.');
+      if (err.code === 'auth/user-not-found') {
+        setError('Usuário não encontrado.');
+      } else if (err.code === 'auth/wrong-password') {
+        setError('Senha incorreta.');
+      } else {
+        setError('Falha ao fazer login. Verifique suas credenciais.');
+      }
     } finally {
       setLoading(false);
     }
-
-
-    navigate('/PaginaInicial');
   };
 
+
+
   return (
-    <Container className="form-container">
-      <Form onSubmit={handleLogin} className="sign-in">
-        <h1>Login</h1>
-        <span>Use seu email e senha para entrar:</span>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Senha"
-          required
-        />
-        <Link to="#">Esqueceu sua senha?</Link>
-        <button type="submit" disabled={loading} className='clear'>
-          {loading ? 'Carregando...' : 'Entrar'}
-        </button>
-      </Form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <ToggleContainer>
-        <Togglepanel>
-          <ToggleRight>
-            <Imge src={image} className="imge" alt="" />
-          </ToggleRight>
-        </Togglepanel>
-      </ToggleContainer>
-    </Container>
+    <>
+      <div className="login-container">
+        <img src={Image} alt="foto" className="img2" />
+        <h2>Login</h2>
+        <form id="loginForm" onSubmit={handleLogin}>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Digite seu e-mail"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Digite sua senha"
+          />
+          <button className="btn1" type="submit" id="loginButton">
+            {loading ? 'Carregando...' : 'Entrar'}
+          </button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {success && <p style={{ color: 'green' }}>{success}</p>}
+        </form>
+      </div>
+
+      <div className="contato">
+        <h1>Criar Conta</h1>
+        <Link to="https://wa.link/mssk2f">
+          <img src={Wpp} alt="foto do WhatsApp" className="img1" />
+        </Link>
+
+        <img src={Telegrma} alt="foto do Telegram" className="img1" />
+        <p className="text">Entre em contato conosco</p>
+      </div>
+    </>
   );
 };

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Chart } from 'react-google-charts';
-import { Header } from '../../components/Header';
-import Imagem from "../../img/reservedpar1.png";
-import './index.css';
-import { Cards, CardsContainer, Imge, Main, Title } from './styled';
+import { Header } from "../../components/Header/index";
+import Image from "../../img/Logo.png";
+import './dashboard.css';
 
 export const data = [
   ['Disponivel', 'Não Disponivel'],
@@ -22,8 +21,8 @@ const options1 = {
   title: "Vagas Mensal:",
   pieHole: 0.4,
   is3D: true,
-  width: 400,
-  height: 300,
+  width: 380,
+  height: 200,
   backgroundColor: {
     stroke: "black",
     strokeWidth: 3,
@@ -51,8 +50,8 @@ const options = {
   title: "Vagas Disponíveis:",
   pieHole: 0.5,
   is3D: true,
-  width: 400,
-  height: 300,
+  width: 380,
+  height: 200,
   backgroundColor: {
     stroke: "black",
     strokeWidth: 3,
@@ -76,71 +75,56 @@ const options = {
   colors: ["#fb6b41", "#2b4e72"],
 };
 
+
+
 export default function Dashboard() {
   return (
     <>
       <Header />
-      <Main className="container">
-        <Imge src={Imagem} alt="" />
+
+      <div className='Main1'>
+        <div className="dashboard">
+
+          <img src={Image} alt="Logo" className="logo" />
+        </div>
         <div className="charts-container">
           <Chart
-            chartType='PieChart'
-            width="100%"
-            height="200px"
+            chartType="PieChart"
             data={data}
             options={options}
-
           />
           <Chart
-            chartType='PieChart'
-            width="100%"
-            height="200px"
+            chartType="PieChart"
             data={data1}
             options={options1}
           />
         </div>
-        <CardsContainer>
-          <Cards>
-            <Title>Reserva Totais</Title>
-            <h1>
-              Hoje:
-              <p>150</p>
-            </h1>
-            <h1>
-              Semana:
-              <p>350</p>
-            </h1>
-            <h1>
-              Mês:
-              <p>550</p>
-            </h1>
-          </Cards>
-          <Cards>
-            <Title>Taxa de ocupação</Title>
-            <h1>
-              40%
-              <p>Ocupado</p>
-            </h1>
-          </Cards>
-          <Cards>
-            <Title>Vaga Disponivél</Title>
-            <h1>
-              Vagas Disponiveis:
-              <p>150</p>
-            </h1>
-            <h1>
-              Vagas não Disponiveis:
-              <p>80</p>
-            </h1>
-          </Cards>
+      </div>
+      <div className="cards-container">
+        <div className='card'>
+          <h1>Reserva Totais</h1>
+          <h2>Hoje: <p>10</p></h2>
+
+          <h2>Semana: <p>10</p></h2>
+          <h2>Mês: <p>10</p></h2>
+        </div>
+        <div className='card'>
+          <h1>Taxa de ocupação</h1>
+          <h2>40% <p>ocupado</p></h2>
+        </div>
+        <div className='card'>
+          <h1>Vagas Disponíveis</h1>
+          <h2>Disponiveis <p>100</p></h2>
+          <h2>Não Disponiveis <p>10</p></h2>
+          <h2>Manutenção <p>10</p></h2>
+
+
+        </div>
+      </div>
 
 
 
 
-
-
-        </CardsContainer>
-      </Main>
     </>
   );
 }

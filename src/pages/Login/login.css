@@ -1,0 +1,98 @@
+
+h1 {
+    font-size: 36px;
+    background: linear-gradient(to bottom, orangered, orange);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0;
+}
+
+
+
+.contato {
+    width: 200px;
+    margin-left: 480px;
+    margin-top: -400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.img1 {
+    width: 70px;
+    cursor: pointer;
+    margin: 10px 0;
+
+}
+
+.text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.img2 {
+    margin-left: 125px;
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+
+.login-container {
+    margin-top: 40px;
+    margin-left: -150px;
+    background: black;
+    padding: 40px;
+    border-radius: 10px;
+    border-top: 4px solid orangered;
+    border-bottom: 4px solid orangered;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .389);
+    width: 400px;
+    
+
+}
+
+
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: -px;
+    text-align: center;
+    color: white;
+}
+
+label,
+input {
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    width: 95%;
+    margin-bottom: 35px;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn1 {
+    width: 100%;
+    padding: 15px;
+    background-color: rgb(17, 60, 109);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.btn1:hover {
+    background-color: rgb(47, 109, 179);
+}
