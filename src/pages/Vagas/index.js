@@ -1,6 +1,6 @@
 import React from "react";
+import { FaSquare } from "react-icons/fa";
 import { Header } from "../../components/Header";
-import { FaSquare } from "react-icons/fa"
 import "./Vagas.css";
 
 export const Vagas = () => {
@@ -16,7 +16,7 @@ export const Vagas = () => {
             <h1>Gerenciamento de vagas</h1>
           </div>
           <div className="num1">
-            <FaSquare color="green" style={{ margin: '-2px 2px', }} />
+            <FaSquare color="#5bfc60" style={{ margin: '-2px 2px', }} />
             <span className="num2">Dísponivel</span>
             <FaSquare color="red" style={{ margin: '-2px 2px', }} />
             <span className="num2" >Vaga ocupada</span>
@@ -40,7 +40,7 @@ export const Vagas = () => {
               </li>
               <li className="seat" id="seat2">
                 <input type="checkbox" id="1B" />
-                <label for="1B">1B</label>
+                <label for="1B">2A</label>
               </li>
               <li className="seat" id="seat1">
                 <input type="checkbox" id="1C" />
