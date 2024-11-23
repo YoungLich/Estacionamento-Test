@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { db } from "../../service/firebaseConfig";
 import "./perfil.css";
+import "./responsive-perfil.css";
 
 const Perfil = () => {
   const [user, setUser] = useState(null);

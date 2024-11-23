@@ -1,0 +1,84 @@
+/* Responsividade para dispositivos móveis (largura mínima de 400px e máxima de 1080px) */
+@media (min-width: 400px) and (max-width: 1080px) {
+    .Main1 {
+        margin-left: 10;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 100px;
+        margin: 10px auto;
+    }
+
+    .charts-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        margin: 0 auto;
+        margin-left: 190px;
+    }
+
+    .card {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .card h1 {
+        font-size: 20px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+    }
+
+    .card p {
+        font-size: 16px;
+    }
+}
+
+/* Responsividade para dispositivos desktop (largura mínima de 1360px e máxima de 2440px) */
+@media (min-width: 1360px) and (max-width: 2440px) {
+    .Main1 {
+        margin-left: 100px;
+    }
+
+    .logo {
+        width: 140px;
+        margin-top: 5px;
+    }
+
+    .charts-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .card {
+        width: 300px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+
+    .card h1 {
+        font-size: 25px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 20px;
+    }
+}

@@ -7,6 +7,7 @@ import Telegrma from "../../img/Telegram.png";
 import Wpp from "../../img/Wpp.png";
 import { auth, db } from '../../service/firebaseConfig';
 import "./login.css";
+import "./responsivelogin.css";
 
 
 

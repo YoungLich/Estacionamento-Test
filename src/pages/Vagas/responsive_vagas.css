@@ -1,0 +1,138 @@
+/* Responsividade para dispositivos móveis (largura mínima de 400px e máxima de 1080px) */
+@media (min-width: 380px) and (max-width: 1080px) {
+    #vagas {
+        width: 90%;
+        max-width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        margin-left: 90px;
+        width: 300px;
+    }
+
+    .num1 {
+        padding: 1px;
+        flex-direction: column;
+        display: flex;
+        letter-spacing: 1px;
+        margin-top: -15px;
+    }
+
+    .num3 {
+        margin-top: 20px;
+        margin-left: -350px;
+    }
+
+    #vagas h1 {
+        font-size: 1.5rem;
+    }
+
+    .plane {
+        padding: 20px;
+    }
+
+    .select h1 {
+        width: 90%;
+        margin: 10px auto;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    .seats {
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 8px;
+        height: auto;
+    }
+
+    .seat {
+        flex: 0 0 30%;
+        margin: 5px;
+    }
+
+    .seat label {
+        font-size: 12px;
+    }
+
+    .stat {
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .stat h3 {
+        font-size: 1.2rem;
+    }
+
+    .stat p {
+        font-size: 0.9rem;
+    }
+
+    #tempo-medio,
+    #taxa-ocupacao,
+    #picos-ocupacao {
+        height: 200px;
+    }
+}
+
+/* Responsividade para dispositivos desktop (largura mínima de 1360px e máxima de 2440px) */
+@media (min-width: 1360px) and (max-width: 2440px) {
+    #vagas {
+        width: 950px;
+        max-width: 950px;
+        margin: 10px auto;
+    }
+
+    #vagas h1 {
+        font-size: 2.2rem;
+    }
+
+    .plane {
+        padding: 35px;
+    }
+
+    .select h1 {
+        width: 70%;
+        margin: 40px auto;
+        padding: 30px;
+        font-size: 1.5rem;
+    }
+
+    .seats {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        font-size: 10px;
+        height: 60px;
+    }
+
+    .seat {
+        flex: 0 0 14%;
+        margin: 0;
+    }
+
+    .seat label {
+        font-size: 14px;
+        margin-left: -25px;
+    }
+
+    .stat {
+        width: calc(50% - 20px);
+        margin: 10px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat h3 {
+        font-size: 1.4rem;
+    }
+
+    .stat p {
+        font-size: 1rem;
+    }
+
+    #tempo-medio,
+    #taxa-ocupacao,
+    #picos-ocupacao {
+        height: 300px;
+    }
+}

@@ -1,0 +1,105 @@
+/* Responsividade para dispositivos móveis (largura mínima de 380px e máxima de 1080px) */
+@media (min-width: 380px) and (max-width: 1080px) {
+    .container-edit {
+        width: 75%;
+        max-width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        margin-left: 85px;
+    }
+
+    .span1 {
+        font-size: 18px;
+        text-align: center;
+        justify-content: center;
+        margin: 10px auto;
+        gap: 10px;
+        display: flex;
+    }
+
+    .span2,
+    .p1,
+    .title2 {
+        position: static;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .profile-picture1 {
+        margin: 10px auto;
+    }
+
+    .image1 {
+        width: 150px;
+        margin: 10px auto;
+    }
+
+    .btn10 {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
+
+/* Responsividade para dispositivos desktop (largura mínima de 1360px e máxima de 2440px) */
+@media (min-width: 1360px) and (max-width: 2440px) {
+    .container-edit {
+        width: 800px;
+        max-width: 900px;
+        margin: 25px auto;
+    }
+
+    .span1 {
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+        justify-content: left;
+        margin-left: 15px;
+        gap: 30px;
+        display: flex;
+    }
+
+    .span2 {
+        position: absolute;
+        margin-top: -300px;
+        text-align: left;
+    }
+
+    .p1 {
+        text-align: center;
+        margin-left: 110px;
+        margin-top: -300px;
+    }
+
+    .profile-picture1 {
+        margin-right: -360px;
+    }
+
+    .image1 {
+        width: 200px;
+        margin: 15px auto;
+    }
+
+    .tit {
+        margin-top: 20px;
+        margin-left: 70px;
+    }
+
+    .title2 {
+        position: absolute;
+        margin-top: -300px;
+        margin-left: 650px;
+        text-align: right;
+    }
+
+    .btn10 {
+        display: block;
+        margin-top: -150px;
+        margin-left: 30px;
+        text-align: left;
+        padding: 6px 10px;
+        font-size: 17px;
+    }
+}

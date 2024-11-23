@@ -2,6 +2,7 @@ import React from "react";
 import { FaSquare } from "react-icons/fa";
 import { Header } from "../../components/Header";
 import "./Vagas.css";
+import "./responsive_vagas.css";
 
 export const Vagas = () => {
 
